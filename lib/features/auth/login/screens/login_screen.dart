@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_huma_volve/features/auth/login/screens/widgets/login_bloc_listener.dart';
 import 'package:ecommerce_app_huma_volve/features/auth/login/view_model/login_cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +24,7 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                LoginBlocListener(),
                 const SizedBox(height: 60),
                 Icon(Icons.shopping_bag, size: 80, color: AppTheme.primary),
                 const SizedBox(height: 32),
