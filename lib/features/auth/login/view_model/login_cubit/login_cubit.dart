@@ -7,13 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
   final LoginRepo _repo;
+
   LoginCubit(this._repo) : super(const LoginStates.initial());
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final fromKey = GlobalKey<FormState>();
 
-  void emitLoginState() async {
+  Future<void> emitLoginState() async {
     emit(const LoginStates.loginLoading());
 
     final response = await _repo.login(

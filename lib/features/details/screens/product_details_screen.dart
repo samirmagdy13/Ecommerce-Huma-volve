@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../../../core/dummy_data.dart';
 import '../../../core/theme.dart';
+import '../../../core/widgets/primary_button.dart';
 import '../widgets/color_selector.dart';
 import '../widgets/size_selector.dart';
-import '../../../core/widgets/primary_button.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final Product product;
@@ -66,6 +67,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 child: Image.network(
                   widget.product.imageUrl,
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => const Center(
+                    child: Icon(Icons.image_not_supported_outlined),
+                  ),
                 ),
               ),
             ),
@@ -82,6 +86,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,43 +94,35 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         Expanded(
                           child: Text(
                             widget.product.name,
-                            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                              fontSize: 28,
-                              height: 1.2,
-                            ),
+                            style: Theme.of(context).textTheme.headlineLarge
+                                ?.copyWith(fontSize: 28, height: 1.2),
                           ),
                         ),
                         const SizedBox(width: 16),
                         Text(
                           '\$${widget.product.price.toStringAsFixed(2)}',
-                          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                            color: AppTheme.primary,
-                            fontSize: 24,
-                          ),
+                          style: Theme.of(context).textTheme.headlineLarge
+                              ?.copyWith(color: AppTheme.primary, fontSize: 24),
                         ),
                       ],
                     ),
                     const SizedBox(height: 24),
                     Text(
                       'Description',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.titleLarge
+                          ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       widget.product.description,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        height: 1.6,
-                        fontSize: 16,
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium
+                          ?.copyWith(height: 1.6, fontSize: 16),
                     ),
                     const SizedBox(height: 24),
                     Text(
                       'Select Color',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.titleLarge
+                          ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 12),
                     ColorSelector(
@@ -140,9 +137,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     const SizedBox(height: 24),
                     Text(
                       'Select Size',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.titleLarge
+                          ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 12),
                     SizeSelector(
@@ -160,7 +156,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('${widget.product.name} added to cart'),
+                            content: Text(
+                              '${widget.product.name} added to cart',
+                            ),
                             behavior: SnackBarBehavior.floating,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),

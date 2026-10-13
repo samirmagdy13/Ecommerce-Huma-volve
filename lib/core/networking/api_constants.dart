@@ -1,6 +1,9 @@
 class ApiConstants {
   static const String apiBaseUrl = "https://api.escuelajs.co";
   static const String login = "$apiBaseUrl/api/v1/auth/login";
+  static const String categories = "/api/v1/categories";
+  static const String categoryProducts =
+      "/api/v1/categories/{categoryId}/products";
 }
 
 class ApiErrors {

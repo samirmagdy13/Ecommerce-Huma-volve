@@ -7,14 +7,16 @@ import '../../../../../core/networking/api_result.dart';
 
 class LoginRepo {
   final ApiService _apiService;
+
   const LoginRepo(this._apiService);
+
   Future<ApiResult<LoginResponse>> login(LoginRequestBody body) async {
     try {
       final response = await _apiService.login(body);
-
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ApiErrorHandler.handle(error));
     }
   }
+
 }
